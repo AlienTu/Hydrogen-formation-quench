@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Two-flavour QED2 linear spectrum solver</title>
-  <link rel="stylesheet" href="spectrum.css?v=20260429a" />
+  <link rel="stylesheet" href="../spectrum.css?v=20260429a" />
   <script src="https://cdn.jsdelivr.net/npm/plotly.js-dist-min@2.35.2/plotly.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/numeric@1.2.6/numeric.min.js"></script>
   <script>
@@ -16,9 +16,9 @@
   <header class="topbar">
     <div>
       <h1>Two-flavour QED2 defect spectrum</h1>
-      <p>Full-space linear fluctuation solver around a mirrored flavour-kink background. The Hessian is diagonalized in the \((\phi_1,\phi_2)\) basis; \((\phi_c,\phi_s)\) is shown only as a diagnostic background.</p>
+      <p>Matrix-free Lanczos solver for the full-space linear fluctuation operator. The Hessian is applied in the \((\phi_1,\phi_2)\) basis; \((\phi_c,\phi_s)\) is shown only as a diagnostic background.</p>
     </div>
-    <a href="index.html" class="home-link">Back to quench simulator</a>
+    <a href="dynamics/" target="_top" class="home-link">Back to quench dynamics</a>
   </header>
 
   <main class="layout">
@@ -28,17 +28,18 @@
       <label>kappa1 <input id="k1" type="number" step="0.05" value="2.0"></label>
       <label>kappa2 <input id="k2" type="number" step="0.05" value="0.2"></label>
       <label>half length L <input id="L" type="number" step="5" value="30"></label>
-      <label>half-grid points <input id="Nh" type="number" step="10" value="125"></label>
-      <label>eigenmodes <input id="numModes" type="number" step="10" value="120"></label>
+      <label>half-grid points <input id="Nh" type="number" step="25" value="250"></label>
+      <label>Ritz eigenmodes shown <input id="numModes" type="number" step="10" value="100"></label>
+      <label>Krylov dimension <input id="krylovDim" type="number" step="20" value="180"></label>
       <label>IPR top modes <input id="topIpr" type="number" step="1" value="6"></label>
       <label>center window R <input id="centerR" type="number" step="0.5" value="5"></label>
       <label><input id="sqrt2g" type="checkbox" checked> use Schwinger convention: charge term \(g^2(\phi_1+\phi_2)^2/2\)</label>
-      <button id="runBtn">Run spectrum solver</button>
+      <button id="runBtn">Run Lanczos spectrum solver</button>
       <div id="status" class="status">Ready.</div>
       <div class="formula">
         <p><strong>Background EOM in displayed convention:</strong></p>
         <p>\[-\phi_i''+g^2(\phi_1+\phi_2)+\sqrt\pi\kappa_i\sin(2\sqrt\pi\phi_i)=0.\]</p>
-        <p>The code internally uses \(g_{code}=\sqrt2 g\) when the checkbox is selected.</p>
+        <p>The fluctuation operator is applied matrix-free, so the dense Hessian is never stored.</p>
       </div>
     </aside>
 
@@ -59,6 +60,6 @@
     </section>
   </main>
 
-  <script src="spectrum.js?v=20260429a"></script>
+  <script src="../spectrum.js?v=20260429c"></script>
 </body>
 </html>
