@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Two-flavour QED2 linear spectrum solver</title>
+  <link rel="stylesheet" href="spectrum.css?v=20260429a" />
+  <script src="https://cdn.jsdelivr.net/npm/plotly.js-dist-min@2.35.2/plotly.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/numeric@1.2.6/numeric.min.js"></script>
+  <script>
+    window.MathJax = { tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] }, svg: { fontCache: 'global' } };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <h1>Two-flavour QED2 defect spectrum</h1>
+      <p>Full-space linear fluctuation solver around a mirrored flavour-kink background. The Hessian is diagonalized in the \((\phi_1,\phi_2)\) basis; \((\phi_c,\phi_s)\) is shown only as a diagnostic background.</p>
+    </div>
+    <a href="index.html" class="home-link">Back to quench simulator</a>
+  </header>
+
+  <main class="layout">
+    <aside class="panel controls">
+      <h2>Parameters</h2>
+      <label>g <input id="g" type="number" step="0.05" value="1.0"></label>
+      <label>kappa1 <input id="k1" type="number" step="0.05" value="2.0"></label>
+      <label>kappa2 <input id="k2" type="number" step="0.05" value="0.2"></label>
+      <label>half length L <input id="L" type="number" step="5" value="30"></label>
+      <label>half-grid points <input id="Nh" type="number" step="10" value="125"></label>
+      <label>eigenmodes <input id="numModes" type="number" step="10" value="120"></label>
+      <label>IPR top modes <input id="topIpr" type="number" step="1" value="6"></label>
+      <label>center window R <input id="centerR" type="number" step="0.5" value="5"></label>
+      <label><input id="sqrt2g" type="checkbox" checked> use Schwinger convention: charge term \(g^2(\phi_1+\phi_2)^2/2\)</label>
+      <button id="runBtn">Run spectrum solver</button>
+      <div id="status" class="status">Ready.</div>
+      <div class="formula">
+        <p><strong>Background EOM in displayed convention:</strong></p>
+        <p>\[-\phi_i''+g^2(\phi_1+\phi_2)+\sqrt\pi\kappa_i\sin(2\sqrt\pi\phi_i)=0.\]</p>
+        <p>The code internally uses \(g_{code}=\sqrt2 g\) when the checkbox is selected.</p>
+      </div>
+    </aside>
+
+    <section class="panel outputs">
+      <div class="summary-grid">
+        <div><span>lower threshold</span><strong id="lowerThr">--</strong></div>
+        <div><span>upper threshold</span><strong id="upperThr">--</strong></div>
+        <div><span>selected modes</span><strong id="selectedModes">--</strong></div>
+        <div><span>max EOM residual</span><strong id="residual">--</strong></div>
+      </div>
+      <div id="backgroundPhi" class="plot"></div>
+      <div id="backgroundCS" class="plot"></div>
+      <div id="massPlot" class="plot"></div>
+      <div id="spectrumPlot" class="plot"></div>
+      <div id="modePlot" class="plot large"></div>
+      <div id="densityPlot" class="plot"></div>
+      <div id="candidateTable" class="table-wrap"></div>
+    </section>
+  </main>
+
+  <script src="spectrum.js?v=20260429a"></script>
+</body>
+</html>
