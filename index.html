@@ -15,8 +15,9 @@
     <aside class="left-pane">
       <section class="hero-card">
         <h1>Hydrogen formation quench</h1>
-        <p class="subtitle">Classical real-time simulation of bosonized 1+1D two-flavour QED. The fields are \(\phi_c=(\phi_1+\phi_2)/\sqrt{2}\) and \(\phi_s=(\phi_1-\phi_2)/\sqrt{2}\). This version uses nontrivial spatial initial profiles and sets all initial momenta to zero.</p>
-        <p class="subtitle">For non-periodic boundary conditions one may choose an integer spin-sector charge \(z\), initialized by \(\phi_s(-L/2,0)=0\), \(\phi_s(L/2,0)=z\sqrt{2\pi}\), and \(\phi_c(\pm L/2,0)=0\). For \(z=0\), the profile is a central flavour-1 kink--antikink pair with \(\phi_2=0\).</p>
+        <p class="subtitle">Classical real-time simulation of bosonized 1+1D two-flavour QED. The fields are \(\phi_c=(\phi_1+\phi_2)/\sqrt{2}\) and \(\phi_s=(\phi_1-\phi_2)/\sqrt{2}\).</p>
+        <p class="subtitle">This page now uses the Schwinger convention \(V_{\rm charge}=g^2(\phi_1+\phi_2)^2/2=g^2\phi_c^2\). The linear spectrum page uses the same convention.</p>
+        <p><a id="staticSpectrumTopLink" href="spectrum.html" style="display:inline-block;padding:8px 10px;border-radius:8px;background:#111827;color:white;text-decoration:none;">Open static spectrum solver</a></p>
         <div class="notes compact-note">Dashed lines mark topological sectors. For \(\phi_c,\phi_s\): \(n\sqrt{2\pi}\). For \(\phi_1,\phi_2\): \(n\sqrt{\pi}\).</div>
       </section>
       <section class="controls-card">
@@ -28,7 +29,7 @@
         </div>
         <div class="controls controls-horizontal">
           <div class="param-grid-header"><span>Parameter</span><span>Slider</span><span>Input</span></div>
-          <div class="control triple"><label for="g">g <small>charge gap</small></label><input id="g" type="range" min="0.2" max="4.0" step="0.05" value="1.0" /><input id="gNumber" type="number" min="0.2" max="4.0" step="0.05" value="1.0" /></div>
+          <div class="control triple"><label for="g">g <small>Schwinger charge coupling</small></label><input id="g" type="range" min="0.2" max="4.0" step="0.05" value="1.0" /><input id="gNumber" type="number" min="0.2" max="4.0" step="0.05" value="1.0" /></div>
           <div class="control triple"><label for="kappa1">&kappa;<sub>1</sub> <small>flavour-1 cosine coupling</small></label><input id="kappa1" type="range" min="0.2" max="8.0" step="0.1" value="5.0" /><input id="kappa1Number" type="number" min="0.2" max="8.0" step="0.1" value="5.0" /></div>
           <div class="control triple"><label for="kappa2">&kappa;<sub>2</sub> <small>flavour-2 cosine coupling</small></label><input id="kappa2" type="range" min="0.1" max="3.0" step="0.05" value="0.5" /><input id="kappa2Number" type="number" min="0.1" max="3.0" step="0.05" value="0.5" /></div>
           <div class="control triple"><label for="L">L <small>box size</small></label><input id="L" type="range" min="40" max="300" step="10" value="200" /><input id="LNumber" type="number" min="40" max="300" step="10" value="200" /></div>
@@ -45,8 +46,8 @@
       </section>
       <section class="hero-card"><div class="formula-box hero-formula no-top-margin"><div class="formula-title">boundary condition</div><div id="bcFormula" class="latex-block"></div></div></section>
       <section class="hero-card"><div class="formula-box hero-formula no-top-margin"><div class="formula-title">initial condition</div><div id="initialFormula" class="latex-block"></div></div></section>
-      <section class="hero-card"><div class="formula-box hero-formula no-top-margin"><div class="formula-title">equations of motion in the charge/spin basis</div><div class="latex-block">\[\begin{aligned}\partial_t^2\phi_c-\partial_x^2\phi_c+g^2\phi_c&+\frac{\sqrt{2\pi}}{2}\kappa_1\sin\!\bigl[\sqrt{2\pi}(\phi_c+\phi_s)\bigr]+\frac{\sqrt{2\pi}}{2}\kappa_2\sin\!\bigl[\sqrt{2\pi}(\phi_c-\phi_s)\bigr]=0,\\[0.6em]\partial_t^2\phi_s-\partial_x^2\phi_s&+\frac{\sqrt{2\pi}}{2}\kappa_1\sin\!\bigl[\sqrt{2\pi}(\phi_c+\phi_s)\bigr]-\frac{\sqrt{2\pi}}{2}\kappa_2\sin\!\bigl[\sqrt{2\pi}(\phi_c-\phi_s)\bigr]=0.\end{aligned}\]</div></div></section>
-      <section class="hero-card"><div class="formula-box hero-formula no-top-margin"><div class="formula-title">equations of motion in the flavour basis</div><div class="latex-block">\[\phi_1=\frac{\phi_c+\phi_s}{\sqrt{2}},\qquad \phi_2=\frac{\phi_c-\phi_s}{\sqrt{2}}.\]\[\begin{aligned}\partial_t^2\phi_1-\partial_x^2\phi_1+\frac{g^2}{2}(\phi_1+\phi_2)+\sqrt{\pi}\,\kappa_1\sin(2\sqrt{\pi}\phi_1)&=0,\\[0.6em]\partial_t^2\phi_2-\partial_x^2\phi_2+\frac{g^2}{2}(\phi_1+\phi_2)+\sqrt{\pi}\,\kappa_2\sin(2\sqrt{\pi}\phi_2)&=0.\end{aligned}\]</div></div></section>
+      <section class="hero-card"><div class="formula-box hero-formula no-top-margin"><div class="formula-title">equations of motion in the charge/spin basis</div><div class="latex-block">\[\begin{aligned}\partial_t^2\phi_c-\partial_x^2\phi_c+2g^2\phi_c&+\frac{\sqrt{2\pi}}{2}\kappa_1\sin\!\bigl[\sqrt{2\pi}(\phi_c+\phi_s)\bigr]+\frac{\sqrt{2\pi}}{2}\kappa_2\sin\!\bigl[\sqrt{2\pi}(\phi_c-\phi_s)\bigr]=0,\\[0.6em]\partial_t^2\phi_s-\partial_x^2\phi_s&+\frac{\sqrt{2\pi}}{2}\kappa_1\sin\!\bigl[\sqrt{2\pi}(\phi_c+\phi_s)\bigr]-\frac{\sqrt{2\pi}}{2}\kappa_2\sin\!\bigl[\sqrt{2\pi}(\phi_c-\phi_s)\bigr]=0.\end{aligned}\]</div></div></section>
+      <section class="hero-card"><div class="formula-box hero-formula no-top-margin"><div class="formula-title">equations of motion in the flavour basis</div><div class="latex-block">\[\phi_1=\frac{\phi_c+\phi_s}{\sqrt{2}},\qquad \phi_2=\frac{\phi_c-\phi_s}{\sqrt{2}}.\]\[\begin{aligned}\partial_t^2\phi_1-\partial_x^2\phi_1+g^2(\phi_1+\phi_2)+\sqrt{\pi}\,\kappa_1\sin(2\sqrt{\pi}\phi_1)&=0,\\[0.6em]\partial_t^2\phi_2-\partial_x^2\phi_2+g^2(\phi_1+\phi_2)+\sqrt{\pi}\,\kappa_2\sin(2\sqrt{\pi}\phi_2)&=0.\end{aligned}\]</div></div></section>
     </aside>
     <main class="right-pane">
       <section class="main sim-card"><h2>Field evolution</h2><p class="subtitle">Top row: \(\phi_c\) and \(\phi_s\). Bottom row: \(\phi_1\) and \(\phi_2\). The same boundary condition is imposed in both bases.</p><canvas id="simCanvas" width="1500" height="980"></canvas></section>
@@ -54,5 +55,6 @@
     </main>
   </div>
   <script src="sim_fixed.js?v=20260426c"></script>
+  <script src="sim_patch_g.js?v=20260429b"></script>
 </body>
 </html>
