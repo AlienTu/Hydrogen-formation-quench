@@ -6,11 +6,19 @@
   if (typeof window === 'undefined') return;
 
   window.addEventListener('DOMContentLoaded', () => {
+    const existing = document.getElementById('staticSpectrumTopLink');
+    if (existing) {
+      existing.href = 'spectrum/';
+      existing.target = '_top';
+      existing.textContent = 'Open static spectrum solver';
+    }
+
     const target = document.querySelector('.top-buttons') || document.querySelector('.hero-card');
     if (target && !document.getElementById('spectrumLinkBtn')) {
       const a = document.createElement('a');
       a.id = 'spectrumLinkBtn';
-      a.href = 'spectrum.html';
+      a.href = 'spectrum/';
+      a.target = '_top';
       a.textContent = 'Static spectrum solver';
       a.style.display = 'inline-block';
       a.style.margin = '8px 0';
